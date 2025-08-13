@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Details</title>
+</head>
+<body>
+<h1 th:text="${title}"></h1>
+<ul>
+    <li th:text="${User.nombre}"></li>
+    <li th:text="${User.apellido}"></li>
+    <li th:if="${User.email != null}" th:text="${User.email}"></li>
+    <li th:if="${User.email == null}" th:text="'no tiene correo 2d'"></li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,1 @@
+insert into clientes (name, lastname) VALUES('pepe','does')

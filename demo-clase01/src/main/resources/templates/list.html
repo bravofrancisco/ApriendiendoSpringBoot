@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}">Lista</title>
+</head>
+<body>
+
+<h1 th:text="${title}"></h1>
+
+<!-- Mostrar mensaje si la lista está vacía -->
+<div th:if="${users == null or users.isEmpty()}" th:text="'No tiene elementos usuarios'"></div>
+
+<!-- Mostrar tabla si hay usuarios -->
+<table border="1" th:if="${users != null and !users.isEmpty()}">
+    <thead>
+    <tr>
+        <th>nombre</th>
+        <th>apellido</th>
+        <th>email</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.nombre}"></td> <!-- Verifica el nombre del campo -->
+        <td th:text="${user.apellido}"></td>
+        <td th:text="${user.email}"></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

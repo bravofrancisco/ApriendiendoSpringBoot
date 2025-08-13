@@ -1,0 +1,6 @@
+@Controller: devuelve html
+@RestController :esta unida con rest body
+
+Dto:TRASPORTAR DATOS
+./mvnw install
+\target>java -jar demo-clase01-0.0.1-SNAPSHOT.jar
