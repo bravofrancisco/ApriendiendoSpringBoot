@@ -25,11 +25,11 @@ public class Cliente {
     @Column(nullable = false, length = 100)
     private String apellido;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Direccion> direcciones ;
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Direccion> direcciones  = new ArrayList<>();
 
     public Cliente() {
-        new ArrayList<>();
+
     }
 
     public Cliente(String nombre, String apellido) {
@@ -76,7 +76,7 @@ public class Cliente {
                 "id=" + id +
                 ", nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +
-                ", direcciones=" + direcciones +
+                ", direcciones=" + (direcciones != null ? direcciones.size() : 0) +
                 '}';
     }
 }

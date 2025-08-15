@@ -21,6 +21,10 @@ public class Direccion {
     @Column(nullable = false)
     private Integer numero;
 
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
+    private Cliente cliente;
+
     public Direccion() {
     }
 
@@ -57,6 +61,14 @@ public class Direccion {
 
     public void setNumero(Integer numero) {
         this.numero = numero;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     @Override

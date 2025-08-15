@@ -30,14 +30,20 @@ public class DemoSpringbootRelacionesApplication implements CommandLineRunner {
 	public void run(String... args) {
 		crearRelaciones();
 		BuscarCliente();
+        oneToMany();
 	}
     @Transactional
     public void oneToMany(){
         Cliente cliente = new Cliente("fran","mora");
         Direccion direccion1 = new Direccion("mario",490);
         Direccion direccion2 = new Direccion("ampliacion",4990);
+
         cliente.getDirecciones().add(direccion1);
+        direccion1.setCliente(cliente);
+
         cliente.getDirecciones().add(direccion2);
+        direccion2.setCliente(cliente);
+
         clienteRepository.save(cliente);
         System.out.println("cliente = " + cliente);
     }
