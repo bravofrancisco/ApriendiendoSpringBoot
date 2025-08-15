@@ -2,7 +2,9 @@ package com.franciscob.demo_springboot_relaciones;
 import com.franciscob.demo_springboot_relaciones.Repository.ClienteRepository;
 import com.franciscob.demo_springboot_relaciones.Repository.FacturaRepository;
 import com.franciscob.demo_springboot_relaciones.entities.Cliente;
+import com.franciscob.demo_springboot_relaciones.entities.Direccion;
 import com.franciscob.demo_springboot_relaciones.entities.Factura;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -29,7 +31,19 @@ public class DemoSpringbootRelacionesApplication implements CommandLineRunner {
 		crearRelaciones();
 		BuscarCliente();
 	}
+    @Transactional
+    public void oneToMany(){
+        Cliente cliente = new Cliente("fran","mora");
+        Direccion direccion1 = new Direccion("mario",490);
+        Direccion direccion2 = new Direccion("ampliacion",4990);
+        cliente.getDirecciones().add(direccion1);
+        cliente.getDirecciones().add(direccion2);
+        clienteRepository.save(cliente);
+        System.out.println("cliente = " + cliente);
+    }
 
+
+    @Transactional
 	private void crearRelaciones() {
 //		Cliente cliente = new Cliente("Jhon", "Bravo");
 //		clienteRepository.save(cliente);
@@ -37,7 +51,8 @@ public class DemoSpringbootRelacionesApplication implements CommandLineRunner {
 				new Cliente("papa","bravo"),
 				new Cliente("mama","becerra"),
 				new Cliente("hijo","bravo becerra"),
-				new Cliente("marcela","calcumil")
+				new Cliente("marcela","calcumil"),
+                new Cliente("Carla","Calcumil")
 		);
 		clienteRepository.saveAll(cliente);
 //
@@ -53,6 +68,7 @@ public class DemoSpringbootRelacionesApplication implements CommandLineRunner {
 			facturaRepository.save(factura);
 		}
 	}
+    @Transactional
 	public void BuscarCliente(){
 		Optional<Cliente> optionalCliente = clienteRepository.findById(2L);
 		if (optionalCliente.isPresent()){

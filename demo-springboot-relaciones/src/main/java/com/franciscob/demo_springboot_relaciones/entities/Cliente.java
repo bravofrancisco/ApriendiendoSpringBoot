@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "clientes")
 public class Cliente {
@@ -22,10 +25,15 @@ public class Cliente {
     @Column(nullable = false, length = 100)
     private String apellido;
 
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Direccion> direcciones ;
+
     public Cliente() {
+        new ArrayList<>();
     }
 
     public Cliente(String nombre, String apellido) {
+        this();
         this.nombre = nombre;
         this.apellido = apellido;
     }
@@ -54,12 +62,21 @@ public class Cliente {
         this.apellido = apellido;
     }
 
+    public List<Direccion> getDirecciones() {
+        return direcciones;
+    }
+
+    public void setDirecciones(List<Direccion> direcciones) {
+        this.direcciones = direcciones;
+    }
+
     @Override
     public String toString() {
         return "Cliente{" +
                 "id=" + id +
                 ", nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +
+                ", direcciones=" + direcciones +
                 '}';
     }
 }
