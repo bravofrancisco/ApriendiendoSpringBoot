@@ -14,7 +14,7 @@ public class Factura {
 
     // Muchas facturas pueden estar asociadas a un cliente
     @ManyToOne
-    @JoinColumn(name = "cliente_id") // nombre de columna FK opcional pero recomendable
+    //@JoinColumn(name = "cliente_id") // nombre de columna FK opcional pero recomendable
     private Cliente cliente;
 
     public Factura() {
