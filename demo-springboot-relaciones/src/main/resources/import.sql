@@ -1,2 +1,2 @@
 --insert into clientes (name, lastname) VALUES('pepe','does')
-insert into clientes (nombre, apellido) values ('pepe', 'does');
+--insert into clientes (nombre, apellido) values ('pepe', 'does');

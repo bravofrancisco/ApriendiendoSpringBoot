@@ -25,8 +25,9 @@ public class Cliente {
     @Column(nullable = false, length = 100)
     private String apellido;
 
-    @OneToMany( cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "client_id")
+    @OneToMany( mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinTable(name = "tabl_clientes_to_direcciones", joinColumns = @JoinColumn(name = "id_cliente"),inverseJoinColumns = @JoinColumn(name = "id_direcciones"),
+    uniqueConstraints = @UniqueConstraint(columnNames = {"id_direcciones"}))
     private List<Direccion> direcciones ;
 
     public Cliente() {
@@ -70,6 +71,8 @@ public class Cliente {
     public void setDirecciones(List<Direccion> direcciones) {
         this.direcciones = direcciones;
     }
+
+
 
     @Override
     public String toString() {
