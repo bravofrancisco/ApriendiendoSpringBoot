@@ -1,5 +1,4 @@
 package com.seccion12.demo_webapiRestfull.Controller;
-
 import com.seccion12.demo_webapiRestfull.Models.Producto;
 import com.seccion12.demo_webapiRestfull.Service.ServiceProducto;
 import jakarta.validation.Valid;
@@ -41,9 +40,6 @@ public class ControllerProducto {
         return ResponseEntity.status(HttpStatus.CREATED).body(productoNuevo);
     }
 
-
-
-
     @PutMapping("/{id}")
     public ResponseEntity<?> actualizarProducto(@RequestBody Producto actualizarProducto,BindingResult result, @PathVariable Long id) {
         if (result.hasFieldErrors()){
@@ -63,13 +59,13 @@ public class ControllerProducto {
             return ResponseEntity.notFound().build(); // 404 Not Found
         }
     }
+
     private ResponseEntity<Map<String, String>> validation(BindingResult result) {
         Map<String, String> errors = new HashMap<>();
 
         result.getFieldErrors().forEach(fieldError -> {
             errors.put(fieldError.getField(), "El campo " + fieldError.getField() + " " + fieldError.getDefaultMessage());
         });
-
         return ResponseEntity.badRequest().body(errors);
     }
 

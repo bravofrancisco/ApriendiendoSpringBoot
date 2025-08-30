@@ -1,5 +1,4 @@
 package com.seccion12.demo_webapiRestfull.Models;
-
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -14,11 +13,11 @@ public class Producto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "El nombre no puede estar vacío")
+    @NotBlank(message = "{NotBlank.producto.name}")
     @Size(min = 2, max = 255, message = "El nombre debe tener entre 2 y 255 caracteres")
     private String nombre;
 
-    @NotNull(message = "El precio no puede ser nulo")
+    @NotNull(message = "{NotNull.producto.precio}")
     @Min(value = 1, message = "El precio debe ser mayor a 0")
     private Integer precio;
 
